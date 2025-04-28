@@ -1,0 +1,11 @@
+#ifndef MQTTCONFIG_H
+#define MQTTCONFIG_H
+
+
+const char* mqtt_server = "mqtt.example.com";  // Broker hostname
+const int mqtt_port = 8883;  // Broker port
+const char* mqtt_user = "espuser";  // Username configured in Mosquitto
+const char* mqtt_pass = "pass";  // Password configured in Mosquitto
+
+
+#endif // MQTTCONFIG_H

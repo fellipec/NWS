@@ -1,0 +1,19 @@
+// wifi_credentials.h
+
+#ifndef WIFI_CREDENTIALS_H
+#define WIFI_CREDENTIALS_H
+
+// Defina suas redes Wi-Fi e senhas aqui
+const char* ssids[] = {
+  "SSID_1",
+  "SSID_2",
+  "SSID_3"
+};
+
+const char* passwords[] = {
+  "senha1",
+  "senha2",
+  "senha3"
+};
+
+#endif
