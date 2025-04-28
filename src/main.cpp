@@ -168,6 +168,7 @@ int tryNTPServer() {
             #ifdef SERIALPRINT
             Serial.printf("Erro ao conectar no NTP: %s\n", ntpServers[i]);
             #endif
+            esp.reset();
         }
     }
     return -1;
@@ -370,6 +371,7 @@ void sendSensorData(float tmp, float hum, float pres) {
                 Serial.print("Falha ao conectar ao MQTT, rc=");
                 Serial.print(mqtt.state());
                 #endif
+                esp.reset();
                 return;
             }
         }
