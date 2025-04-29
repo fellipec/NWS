@@ -100,7 +100,8 @@ bool tryWIFI() {
       #endif
       return connOK;
     }
-
+    display.setTextSize(1);
+    display.setCursor(0,16);
     for (int i = 0; i < numRedes; i++) {
         #ifdef SERIALPRINT
         Serial.print("Tentando conectar em ");
@@ -119,12 +120,15 @@ bool tryWIFI() {
             #endif
             continue;  // Skip to the next SSID if not found
         }
+        display.printf("Rede: %s\n", ssids[i]);
+        display.display();
         WiFi.begin(ssids[i], passwords[i]);
-
         int tentativa = 0;
         // Retry connection up to 10 seconds (10 attempts)
         while (WiFi.status() != WL_CONNECTED && tentativa < 20) {
             delay(500);
+            display.print(".");
+            display.display();
             #ifdef SERIALPRINT            
             Serial.print(".");
             #endif
@@ -142,6 +146,7 @@ bool tryWIFI() {
             #ifdef SERIALPRINT
             Serial.printf("\nFalha ao conectar no Wi-Fi: %s\n", ssids[i]);
             #endif
+            ESP.restart();  // Restart the ESP8266 if connection fails
         }
     }
     return connOK;
