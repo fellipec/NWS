@@ -124,7 +124,7 @@ bool tryWIFI() {
         int tentativa = 0;
         // Retry connection up to 10 seconds (10 attempts)
         while (WiFi.status() != WL_CONNECTED && tentativa < 20) {
-            delay(250);
+            delay(500);
             #ifdef SERIALPRINT            
             Serial.print(".");
             #endif
@@ -168,9 +168,10 @@ int tryNTPServer() {
             #ifdef SERIALPRINT
             Serial.printf("Erro ao conectar no NTP: %s\n", ntpServers[i]);
             #endif
-            esp.reset();
         }
     }
+    // Resets the board
+    ESP.restart();
     return -1;
 }
 
@@ -371,7 +372,7 @@ void sendSensorData(float tmp, float hum, float pres) {
                 Serial.print("Falha ao conectar ao MQTT, rc=");
                 Serial.print(mqtt.state());
                 #endif
-                esp.reset();
+                ESP.restart();
                 return;
             }
         }
